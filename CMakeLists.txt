@@ -2,6 +2,16 @@ cmake_minimum_required(VERSION 3.1)
 
 project(arb C)
 
+Include(FetchContent)
+
+FetchContent_Declare(
+    flint2
+    GIT_REPOSITORY https://github.com/cbilz/flint2.git
+    GIT_TAG     00c3de844
+)
+
+FetchContent_MakeAvailable(flint2)
+
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/configure" CONFIGURE_CONTENTS)
 string(REGEX MATCH "ARB_MAJOR=([0-9]*)" _ ${CONFIGURE_CONTENTS})
 set(ARB_MAJOR ${CMAKE_MATCH_1})
